@@ -26,9 +26,9 @@ import tempfile
 from absl.testing import absltest
 import tensorflow.compat.v1 as tf
 
-from group_agnostic_fairness import adversarial_reweighting_model
-from group_agnostic_fairness.data_utils.uci_adult_input import UCIAdultInput
-from group_agnostic_fairness.fairness_metrics import RobustFairnessMetrics
+import adversarial_reweighting_model
+from data_utils.compas_input import CompasInput
+from fairness_metrics import RobustFairnessMetrics
 
 
 class FairnessMetricsTest(tf.test.TestCase, absltest.TestCase):
@@ -49,7 +49,7 @@ class FairnessMetricsTest(tf.test.TestCase, absltest.TestCase):
     self.dataset_base_dir = os.path.join(os.path.dirname(__file__), 'data/compas')  # pylint: disable=line-too-long
     self.train_file = [os.path.join(os.path.dirname(__file__), 'data/compas/train.csv')]  # pylint: disable=line-too-long
     self.test_file = [os.path.join(os.path.dirname(__file__), 'data/compas/test.csv')]  # pylint: disable=line-too-long
-    self.load_dataset = UCIAdultInput(
+    self.load_dataset = CompasInput(
         dataset_base_dir=self.dataset_base_dir,
         train_file=self.train_file,
         test_file=self.test_file)

@@ -25,9 +25,9 @@ import tempfile
 from absl.testing import absltest
 import tensorflow.compat.v1 as tf
 
-from group_agnostic_fairness import baseline_model
-from group_agnostic_fairness.data_utils.uci_adult_input import UCIAdultInput
-from group_agnostic_fairness.fairness_metrics import RobustFairnessMetrics
+import baseline_model
+from data_utils.compas_input import CompasInput
+from fairness_metrics import RobustFairnessMetrics
 
 
 class BaselineModelTest(tf.test.TestCase, absltest.TestCase):
@@ -36,7 +36,7 @@ class BaselineModelTest(tf.test.TestCase, absltest.TestCase):
     super(BaselineModelTest, self).setUp()
     self.model_dir = tempfile.mkdtemp()
     self.hidden_units = [16, 4]
-    self.batch_size = 8
+    self.batch_size = 512
     self.train_steps = 20
     self.test_steps = 5
     self.dataset_base_dir = os.path.join(os.path.dirname(__file__),
@@ -45,7 +45,7 @@ class BaselineModelTest(tf.test.TestCase, absltest.TestCase):
                                     'data/compas/train.csv')]
     self.test_file = [os.path.join(os.path.dirname(__file__),
                                    'data/compas/test.csv')]
-    self.load_dataset = UCIAdultInput(
+    self.load_dataset = CompasInput(
         dataset_base_dir=self.dataset_base_dir,
         train_file=self.train_file,
         test_file=self.test_file)

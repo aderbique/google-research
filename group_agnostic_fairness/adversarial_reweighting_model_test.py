@@ -25,8 +25,8 @@ import tempfile
 from absl.testing import absltest
 import tensorflow.compat.v1 as tf
 
-from group_agnostic_fairness import adversarial_reweighting_model
-from group_agnostic_fairness.data_utils.uci_adult_input import UCIAdultInput
+import adversarial_reweighting_model
+from data_utils.compas_input import CompasInput
 
 
 class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
@@ -35,14 +35,14 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
     super(AdversarialReweightingModelTest, self).setUp()
     self.model_dir = tempfile.mkdtemp()
     self.primary_hidden_units = [16, 4]
-    self.batch_size = 8
+    self.batch_size = 512
     self.train_steps = 20
     self.test_steps = 5
     self.pretrain_steps = 5
     self.dataset_base_dir = os.path.join(os.path.dirname(__file__), 'data/compas')  # pylint: disable=line-too-long
     self.train_file = [os.path.join(os.path.dirname(__file__), 'data/compas/train.csv')]  # pylint: disable=line-too-long
     self.test_file = [os.path.join(os.path.dirname(__file__), 'data/compas/test.csv')]  # pylint: disable=line-too-long
-    self.load_dataset = UCIAdultInput(
+    self.load_dataset = CompasInput(
         dataset_base_dir=self.dataset_base_dir,
         train_file=self.train_file,
         test_file=self.test_file)
@@ -114,7 +114,7 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         batch_size=self.batch_size,
         pretrain_steps=self.pretrain_steps,
         primary_learning_rate=0.01,
-        adversary_learning_rate=0.01,
+        adversary_learning_rate=0.001,
         optimizer='Adagrad',
         activation=tf.nn.relu,
         adversary_loss_type='ce_loss',
@@ -135,7 +135,7 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         batch_size=self.batch_size,
         pretrain_steps=self.pretrain_steps,
         primary_learning_rate=0.01,
-        adversary_learning_rate=0.01,
+        adversary_learning_rate=0.001,
         optimizer='Adagrad',
         activation=tf.nn.relu,
         adversary_loss_type='hinge_loss',
@@ -157,7 +157,7 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         batch_size=self.batch_size,
         pretrain_steps=self.pretrain_steps,
         primary_learning_rate=0.01,
-        adversary_learning_rate=0.01,
+        adversary_learning_rate=0.001,
         optimizer='Adagrad',
         activation=tf.nn.relu,
         adversary_loss_type='ce_loss',
@@ -178,7 +178,7 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         batch_size=self.batch_size,
         pretrain_steps=self.pretrain_steps,
         primary_learning_rate=0.01,
-        adversary_learning_rate=0.01,
+        adversary_learning_rate=0.001,
         optimizer='Adagrad',
         activation=tf.nn.relu,
         adversary_loss_type='ce_loss',
@@ -199,7 +199,7 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         batch_size=self.batch_size,
         pretrain_steps=self.pretrain_steps,
         primary_learning_rate=0.01,
-        adversary_learning_rate=0.01,
+        adversary_learning_rate=0.001,
         optimizer='Adagrad',
         activation=tf.nn.relu,
         adversary_loss_type='ce_loss',
