@@ -46,9 +46,9 @@ class FairnessMetricsTest(tf.test.TestCase, absltest.TestCase):
     self.train_steps = 10
     self.test_steps = 5
     self.pretrain_steps = 5
-    self.dataset_base_dir = os.path.join(os.path.dirname(__file__), 'data/toy_data')  # pylint: disable=line-too-long
-    self.train_file = [os.path.join(os.path.dirname(__file__), 'data/toy_data/train.csv')]  # pylint: disable=line-too-long
-    self.test_file = [os.path.join(os.path.dirname(__file__), 'data/toy_data/test.csv')]  # pylint: disable=line-too-long
+    self.dataset_base_dir = os.path.join(os.path.dirname(__file__), 'data/compas')  # pylint: disable=line-too-long
+    self.train_file = [os.path.join(os.path.dirname(__file__), 'data/compas/train.csv')]  # pylint: disable=line-too-long
+    self.test_file = [os.path.join(os.path.dirname(__file__), 'data/compas/test.csv')]  # pylint: disable=line-too-long
     self.load_dataset = UCIAdultInput(
         dataset_base_dir=self.dataset_base_dir,
         train_file=self.train_file,

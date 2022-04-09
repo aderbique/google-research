@@ -66,10 +66,10 @@ flags.DEFINE_integer("min_eval_frequency", 1000,
                      "How often (steps) to run evaluation.")
 
 # Flags for loading dataset
-flags.DEFINE_string("dataset_base_dir", "./group_agnostic_fairness/data/toy_data", "(string) path to dataset directory")
-flags.DEFINE_string("dataset", "uci_adult", "Name of the dataset to run")
-flags.DEFINE_multi_string("train_file", ["./group_agnostic_fairness/data/toy_data/train.csv"], "List of (string) path(s) to training file(s).")
-flags.DEFINE_multi_string("test_file", ["./group_agnostic_fairness/data/toy_data/test.csv"], "List of (string) path(s) to evaluation file(s).")
+flags.DEFINE_string("dataset_base_dir", "./group_agnostic_fairness/data/compas", "(string) path to dataset directory")
+flags.DEFINE_string("dataset", "compas", "Name of the dataset to run")
+flags.DEFINE_multi_string("train_file", ["./group_agnostic_fairness/data/compas/train.csv"], "List of (string) path(s) to training file(s).")
+flags.DEFINE_multi_string("test_file", ["./group_agnostic_fairness/data/compas/test.csv"], "List of (string) path(s) to evaluation file(s).")
 
 # # If the model has an adversary, the features for adversary are constructed
 # # in the corresponding custom estimator implementation by filtering feature_columns passed to the learner.

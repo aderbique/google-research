@@ -36,9 +36,9 @@ FLAGS = flags.FLAGS
 def run_experiment(model_name, dataset):
   """Sets FLAGS and runs experiment."""
   FLAGS.model_name = model_name
-  FLAGS.dataset_base_dir = os.path.join(os.path.dirname(__file__), 'data/toy_data')
-  FLAGS.train_file = [os.path.join(os.path.dirname(__file__), 'data/toy_data/train.csv')]
-  FLAGS.test_file = [os.path.join(os.path.dirname(__file__), 'data/toy_data/test.csv')]
+  FLAGS.dataset_base_dir = os.path.join(os.path.dirname(__file__), 'data/compas')
+  FLAGS.train_file = [os.path.join(os.path.dirname(__file__), 'data/compas/train.csv')]
+  FLAGS.test_file = [os.path.join(os.path.dirname(__file__), 'data/compas/test.csv')]
   FLAGS.dataset = dataset
   FLAGS.primary_hidden_units = [4, 2]
   FLAGS.adversary_hidden_units = [2]
@@ -54,12 +54,12 @@ class RunModelTest(tf.test.TestCase, absltest.TestCase):
   def setUp(self):
     super(RunModelTest, self).setUp()
     self._model_name = 'baseline'
-    self._dataset = 'uci_adult'
+    self._dataset = 'compas'
 
   # Test cases for whole training on various datasets
-  def test_run_model_on_uci_adult_dataset(self):
-    """Tests the whole model training can run end-to-end on uci_adult dataset."""
-    self._dataset = 'uci_adult'
+  def test_run_model_on_compas_dataset(self):
+    """Tests the whole model training can run end-to-end on compas dataset."""
+    self._dataset = 'compas'
     run_experiment(model_name=self._model_name, dataset=self._dataset)
 
   # Test cases for whole training on various settings of adversarial reweighting
