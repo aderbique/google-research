@@ -46,7 +46,7 @@ class AdversarialReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         dataset_base_dir=self.dataset_base_dir,
         train_file=self.train_file,
         test_file=self.test_file)
-    self.target_column_name = 'income'
+    self.target_column_name = 'is_recid'
 
   def test_get_feature_columns_with_demographics(self):
     feature_columns, _, _, target_variable_column = (

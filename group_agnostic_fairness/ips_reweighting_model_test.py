@@ -46,7 +46,7 @@ class IPSReweightingModelTest(tf.test.TestCase, absltest.TestCase):
         dataset_base_dir=self.dataset_base_dir,
         train_file=self.train_file,
         test_file=self.test_file)
-    self.label_column_name = 'income'
+    self.label_column_name = 'is_recid'
     self.protected_groups = ['sex', 'race']
     self.subgroups = [0, 1, 2, 3]
     self.fairness_metrics = RobustFairnessMetrics(

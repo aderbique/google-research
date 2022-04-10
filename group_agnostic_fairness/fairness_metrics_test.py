@@ -36,7 +36,7 @@ class FairnessMetricsTest(tf.test.TestCase, absltest.TestCase):
   def setUp(self):
     super(FairnessMetricsTest, self).setUp()
     self.num_thresholds = 5
-    self.label_column_name = 'income'
+    self.label_column_name = 'is_recid'
     self.protected_groups = ['sex', 'race']
     self.subgroups = [0, 1, 2, 3]
     self.model_dir = tempfile.mkdtemp()
